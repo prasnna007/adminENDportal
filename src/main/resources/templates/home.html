@@ -1,0 +1,14 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+
+<body>
+
+	<div th:replace = "common/header :: navbar"></div>
+		
+	<a type="button" class="btn btn-success" th:href="@{/user/userList}">Show All Users</a> 
+	
+	<div th:replace= "common/header :: body-bottom-scripts"></div>
+</body>
+</html>

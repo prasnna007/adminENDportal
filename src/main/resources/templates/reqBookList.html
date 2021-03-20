@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+<body>
+
+	<div th:replace="common/header :: navbar"></div>
+	<div class="container">
+		<!--Table-->
+		<table id="tablePreview" class="table">
+			<!--Table head-->
+			<thead>
+				<tr> 
+					<th>Title</th>
+					<th>Author</th>
+					<th>Category</th>
+					<th>List Price</th>
+					<th>Our Price</th>
+					<th>Update</th>
+					<th>Delete<th>
+					
+				</tr>
+			</thead>
+			<!--Table head-->
+			<!--Table body-->
+			<tbody>
+				 <tr data-th-each="reqbook : ${reqbookList}"> 
+<!-- 				<td><input hidden="hidden" name="id" th:value="@{reqbook.id}"/></td> -->
+					<td><a th:href="@{/user/reqbooksInfo(id=${reqbook.id})}"><span th:text="${reqbook.title}"></span></a>
+					</td>
+					 <td th:text="${reqbook.author}"></td>
+					<td th:text="${reqbook.category}"></td>
+					<td th:text="${reqbook.listPrice}"></td>
+					<td th:text="${reqbook.yourPrice}"></td>
+					<td><a th:href="@{/reqbook/updatereqBook/?id=}+${reqbook.id}">Update and Add Book to Market</a></td>
+					<td><a th:href="@{/reqbook/deletereqBook/?id=}+${reqbook.id}">Delete Book</a></td>
+					
+				
+				</tr>
+			</tbody>
+			<!--Table body-->
+		</table>
+		<!--Table-->
+	</div>
+	<div th:replace="common/header :: body-bottom-scripts"></div>
+	<script>
+		$(document).ready(function(){
+			$('#tablePreview').DataTable({
+				ordering:false
+			});
+		});
+	</script>
+</body>
+</html>

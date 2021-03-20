@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+<body>
+
+	<div th:replace="common/header :: navbar"></div>
+	<div class="container">
+		<!--Table-->
+		<table id="tablePreview" class="table">
+			<!--Table head-->
+			<thead>
+				<tr> 
+					<th>Title</th>
+					<th>Author</th>
+					<th>Category</th>
+					<th>List Price</th>
+					<th>Our Price</th>
+					<th>Active Status</th>
+					<th>Update</th>
+					<th>Delete<th>
+					
+				</tr>
+			</thead>
+			<!--Table head-->
+			<!--Table body-->
+			<tbody>
+				<tr data-th-each="book : ${bookList}">
+<!-- 				<td><input hidden="hidden" name="id" th:value="@{book.id}"/></td> -->
+					<td><a th:href="@{/book/bookInfo(id=${book.id})}"><span th:text="${book.title}"></span></a></td>
+ 					<td th:text="${book.author}"></td>
+					<td th:text="${book.category}"></td>
+					<td th:text="${book.listPrice}"></td>
+					<td th:text="${book.ourPrice}"></td>
+					<td th:text="${book.active}"></td>
+					<td><a th:href="@{/book/updateBook/?id=}+${book.id}">Update Book</a></td>
+					<td><a th:href="@{/book/deleteBook/?id=}+${book.id}">Delete Book</a></td>
+					
+				</tr>
+			</tbody>
+			<!--Table body-->
+		</table>
+		<!--Table-->
+	</div>
+	<div th:replace="common/header :: body-bottom-scripts"></div>
+	<script>
+		$(document).ready(function(){
+			$('#tablePreview').DataTable({
+				ordering:false
+			});
+		});
+	</script>
+</body>
+</html>

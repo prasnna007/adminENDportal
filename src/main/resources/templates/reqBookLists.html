@@ -1,0 +1,56 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+<body>
+
+	<div th:replace="common/header :: navbar"></div>
+	<div class="container">
+		<!--Table-->
+		<table id="tablePreview" class="table">
+			<!--Table head-->
+			<thead>
+				<tr> 
+					<th>Title</th>
+					<th>Author</th>
+					<th>Category</th>
+					<th>List Price</th>
+					<th>Our Price</th>
+					<th>Requested By User</th>
+					<th>Update</th>
+					<th>Delete<th>
+					
+				</tr>
+			</thead>
+			<!--Table head-->
+			<!--Table body-->
+			<tbody>
+				 <tr data-th-each="reqbooks : ${reqbookLists}"> 
+<!-- 				<td><input hidden="hidden" name="id" th:value="@{reqbook.id}"/></td> -->
+					<td><a th:href="@{/book/reqbooksInfo(id=${reqbooks.id})}"><span th:text="${reqbooks.title}"></span></a>
+					</td>
+					 <td th:text="${reqbooks.author}"></td>
+					<td th:text="${reqbooks.category}"></td>
+					<td th:text="${reqbooks.listPrice}"></td>
+					<td th:text="${reqbooks.yourPrice}"></td>
+					<td><a th:href="@{/user/userInfo(uid=${reqbooks.reqUserid})}"><span th:text="${reqbooks.reqUserid}"></span></a>
+					<td><a th:href="@{/book/updateReqBook/?id=}+${reqbooks.id}">Update and Add Book to Market</a></td>
+					<td><a th:href="@{/book/deleteReqBook/?id=}+${reqbooks.id}">Delete Book Adding Request</a></td>
+					
+				
+				</tr>
+			</tbody>
+			<!--Table body-->
+		</table>
+		<!--Table-->
+	</div>
+	<div th:replace="common/header :: body-bottom-scripts"></div>
+	<script>
+		$(document).ready(function(){
+			$('#tablePreview').DataTable({
+				ordering:false
+			});
+		});
+	</script>
+</body>
+</html>

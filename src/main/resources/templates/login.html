@@ -1,0 +1,42 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+
+
+<body >
+	<div  >
+	<h1  style="text-align:center" class="center-block">Welcome to SHAREBUDDY </h1>
+	<hr />
+	<div class="container ">
+		<div class="login-form">
+			<div>
+				<h2 style="text-align:center">"Admin Portal" </h2>
+			</div>
+			<form th:action="@{/login}" method="post">
+				<div class="login">
+				<h2 class="login-header">Log in</h2>
+				</div>
+				<div class="bg-danger" th:if="${param.error}">Invalid username
+					or password.</div>
+				<div class="bg-danger" th:if="${param.logout}">You've logged
+					out successfully.</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Username"
+						required="required" name="username" id="username">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" placeholder="Password"
+						required="required" name="password" id="password">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn  btn-block">Log
+						in</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+	<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>
