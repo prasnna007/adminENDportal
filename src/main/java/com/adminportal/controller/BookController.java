@@ -45,21 +45,27 @@ public class BookController {
 	public String addBookPost( @ModelAttribute("book") Book book, HttpServletRequest request ) 
 	{
 		
-		
+		bookService.save(book);
 		MultipartFile bookImage = book.getBookImage();
+		
+		
+		System.out.println(book.getId());
+		System.out.println(book.toString());
 		
 		try {
 			byte[] bytes = bookImage.getBytes();
 			String name = book.getId()+".png";
 			BufferedOutputStream stream =
 			new BufferedOutputStream(new FileOutputStream(new java.io.File("src/main/resources/static/images/book/"+name)));
+			
+			
 			stream.write(bytes);
 			stream.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		bookService.save(book);
+		
 		return "redirect:bookList";
 	}
 	
@@ -126,7 +132,7 @@ public class BookController {
 		List<ReqBook> reqbookLists = reqbookService.findAll();
 		model.addAttribute("reqbookLists", reqbookLists);
 		
-		return "reqbookLists";
+		return "reqBookLists";
 	}
 
 	 
@@ -136,7 +142,7 @@ public class BookController {
 	public String reqBookInfo(@RequestParam("id") Integer id, Model model) {
 		ReqBook reqbook = reqbookService.findOne(id);
 		model.addAttribute("reqbook",reqbook);
-		return "reqbooksInfo";
+		return "reqBooksInfo";
 	}
 	 
 	@RequestMapping("/updateReqBook")

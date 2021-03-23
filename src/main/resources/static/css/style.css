@@ -2,10 +2,14 @@
 /* Show it is fixed to the top */
 
 body {
-	min-height: 75rem;
-	padding-top: 4.5rem;
-	background-image: url("https://www.wallpapertip.com/wmimgs/8-85665_high-resolution-white-gradient-background.jpg");
-    
+	background-image: url("https://www.wallpapertip.com/wmimgs/8-85665_high-resolution-white-gradient-background.jpg"); 
+ 	 
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 }
